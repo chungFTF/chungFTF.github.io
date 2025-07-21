@@ -166,7 +166,7 @@ search:
 comment:
   type: disqus
   # Disqus shortname
-  shortname: ""
+  shortname: "https-chungftf-github-io"
 # Donate plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/
 # Share plugin configurations
