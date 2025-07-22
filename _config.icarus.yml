@@ -111,9 +111,6 @@ navbar:
     About: /about
   # Links to be shown on the right of the navigation bar
   links:
-    RSS 訂閱:
-      icon: fas fa-rss
-      url: /atom.xml
     Download on GitHub:
       icon: fab fa-github
       url: https://github.com/ppoffice/hexo-theme-icarus
@@ -218,12 +215,6 @@ widgets:
       LinkedIn:
         icon: fab fa-linkedin
         url: https://www.linkedin.com/in/chungbz
-      RSS 訂閱:
-        icon: fas fa-rss
-        url: /atom.xml
-      Feedly:
-        icon: fas fa-bookmark
-        url: https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fchungftf.github.io%2Fatom.xml
   # Table of contents widget configurations
   - # Where should the widget be placed, left sidebar or right sidebar
     position: left
@@ -256,6 +247,7 @@ widgets:
     amount:
     # Whether to show tags count, i.e. number of posts in the tag.
     show_count: true
+
 
 # Plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/

@@ -74,6 +74,9 @@ feed:
   icon: 
   autodiscovery: true
   template:
+  author:
+    name: Stephanie Chung
+    link: https://chungftf.github.io
 
 deploy:
   type: git
