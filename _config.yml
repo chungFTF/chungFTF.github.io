@@ -76,4 +76,6 @@ feed:
   template:
 
 deploy:
-  type: ""
+  type: git
+  repo: https://github.com/chungFTF/chungFTF.github.io.git
+  branch: main
