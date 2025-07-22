@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Stephanie&#39;s Blog</title>
+  <icon>https://chungftf.github.io/icon.png</icon>
+  
+  <link href="https://chungftf.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://chungftf.github.io/"/>
+  <updated>2025-07-22T14:26:37.663Z</updated>
+  <id>https://chungftf.github.io/</id>
+  
+  <author>
+    <name>Stephanie Chung</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>My First Post</title>
+    <link href="https://chungftf.github.io/2025/07/20/My-First-Post/"/>
+    <id>https://chungftf.github.io/2025/07/20/My-First-Post/</id>
+    <published>2025-07-20T15:57:26.000Z</published>
+    <updated>2025-07-22T14:26:37.663Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;嗨！歡迎來到我的部落格&quot;&gt;&lt;a href=&quot;#嗨！歡迎來到我的部落格&quot; class=&quot;headerlink&quot; title=&quot;嗨！歡迎來到我的部落格&quot;&gt;&lt;/a&gt;嗨！歡迎來到我的部落格&lt;/h1&gt;&lt;p&gt;從 2023</summary>
+        
+      
+    
+    
+    
+    
+    <category term="whoami" scheme="https://chungftf.github.io/tags/whoami/"/>
+    
+  </entry>
+  
+</feed>
