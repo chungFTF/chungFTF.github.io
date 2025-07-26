@@ -143,13 +143,13 @@ app_role (應用角色)
 
 1. 進入目錄，啟動容器服務
    ```bash
-   $ cd django-rls-multitenant/config
-   $ docker-compose up -d
+   cd django-rls-multitenant/config
+   docker-compose up -d
    ```
 
 2. 初始化 DB 
    ```bash
-   $ cat ../scripts/init.sql | docker-compose exec -T postgres psql -U postgres -d rls_db
+   cat ../scripts/init.sql | docker-compose exec -T postgres psql -U postgres -d rls_db
    ```
    
    **init.sql 的作用：**
@@ -167,16 +167,16 @@ app_role (應用角色)
     注意：使用 postgres 身份建立表格
 
     ```bash
-    $ DB_USER=postgres DB_PASSWORD=postgres python manage.py migrate
+    DB_USER=postgres DB_PASSWORD=postgres python manage.py migrate
     ```
 
 5. 創建 RLS 策略 migration
    ```bash
    # 檢查是否已有 RLS migration
-   $ python manage.py showmigrations tenants
+   python manage.py showmigrations tenants
    
    # 如果沒有 enable_rls migration，需要創建空的 migration 檔案，並貼上 RLS 策略
-   $ python manage.py makemigrations --empty tenants --name enable_rls
+   python manage.py makemigrations --empty tenants --name enable_rls
    ```
 
    這部分我把 RLS 策略寫在 Django migration 裡，好處是可以跟著專案版本一起管理，這樣開發、測試、正式環境都能用同一套指令部署，而且如果策略有問題還能回滾。
@@ -252,7 +252,7 @@ app_role (應用角色)
 
 6. 執行 RLS migration 來應用策略
    ```bash
-   $ DB_USER=postgres DB_PASSWORD=postgres python manage.py migrate
+   DB_USER=postgres DB_PASSWORD=postgres python manage.py migrate
    ```
 
 7. 產生測試資料
@@ -260,7 +260,7 @@ app_role (應用角色)
     為了時間方便，請 AI 幫我產生測試資料，直接執行起來方便許多～
 
     ```bash
-    $ cat ../scripts/test_rls.sql | docker-compose exec -T postgres psql -U postgres -d rls_db
+    cat ../scripts/test_rls.sql | docker-compose exec -T postgres psql -U postgres -d rls_db
     ```
 
     執行後應產生：
@@ -275,7 +275,7 @@ app_role (應用角色)
 首先，假設你是系統管理員 `postgres` ，你可以取得所有租戶的資料：
 
 ```bash
-$ docker-compose exec postgres psql -U postgres -d rls_db -c "SELECT id, name, code FROM tenants_branch ORDER BY code;"
+docker-compose exec postgres psql -U postgres -d rls_db -c "SELECT id, name, code FROM tenants_branch ORDER BY code;"
 ```
 結果：
 ```
@@ -294,7 +294,7 @@ cb31e356-84f8-4f81-a58c-9c86caf08a8a | 板橋分店 | BR003
 
 ```bash
 # 檢查分店上下文
-$ curl -s -H "X-Branch-ID: 01e9ff22-d020-42f7-9045-6c2b74df1ccb" \
+curl -s -H "X-Branch-ID: 01e9ff22-d020-42f7-9045-6c2b74df1ccb" \
      http://localhost:8000/api/context-status/ | jq
 ```
 
@@ -317,7 +317,7 @@ API 結果
 
 ```bash
 # 檢查銷售資料
-$ curl -s -H "X-Branch-ID: 01e9ff22-d020-42f7-9045-6c2b74df1ccb" \
+curl -s -H "X-Branch-ID: 01e9ff22-d020-42f7-9045-6c2b74df1ccb" \
      http://localhost:8000/api/sales/ | jq
 ```
 
@@ -357,7 +357,7 @@ API 結果
 **測試不同分店的隔離效果**
 ```bash
 # 使用東區分店的 ID 測試
-$ curl -s -H "X-Branch-ID: b4b465c4-8485-4225-af37-9f5d6432e1ef" \
+curl -s -H "X-Branch-ID: b4b465c4-8485-4225-af37-9f5d6432e1ef" \
      http://localhost:8000/api/sales/ | jq
 ```
 
@@ -369,11 +369,11 @@ $ curl -s -H "X-Branch-ID: b4b465c4-8485-4225-af37-9f5d6432e1ef" \
 **試試看如果隨便輸入 id**
 ```bash
 # 用假的分店 ID 測試
-$ curl -s -H "X-Branch-ID: 11111111-1111-1111-1111-111111111111" \
+curl -s -H "X-Branch-ID: 11111111-1111-1111-1111-111111111111" \
      http://localhost:8000/api/sales/
 
 # 不給分店 ID 測試
-$ curl -s http://localhost:8000/api/sales/
+curl -s http://localhost:8000/api/sales/
 ```
 
 系統會正確拒絕：
