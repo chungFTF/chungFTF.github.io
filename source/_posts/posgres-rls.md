@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Row Level Security 實踐多租戶系統
 date: 2025-07-24 14:01:17
-tags:
+tags: [RLS, Django]
 ---
 
 > 最近剛好在研究多租戶架構，發現到多租戶架構的實踐方式其實相當多種，今天要來分享如何使用 PostgresSQL Row Level Security 實踐多租戶吧！
