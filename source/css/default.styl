@@ -23,6 +23,18 @@ html, body
 .card:hover
   background-color: rgba(40, 44, 52, 0.8) !important
 
+// Comment 卡片使用莫蘭迪藍色系
+.card#comments
+  background-color: rgba(167, 183, 195, 0.95) !important
+  color: #e8eff5 !important
+  
+  .card-content
+    background-color: rgba(167, 183, 195, 0.95) !important
+    color: #e8eff5 !important
+    
+  .title
+    color: #e8eff5 !important
+
 // 頁腳
 .footer
   background-color: rgba(40, 44, 52, 0.5) !important
@@ -122,4 +134,89 @@ a
 
 // 分隔線
 hr
-  background-color: dark-primary-color-hover !important 
+  background-color: dark-primary-color-hover !important
+
+// Dasque 留言系統樣式 (莫蘭迪藍色系)
+#dasque-comments,
+#dasque-comments *,
+.dasque-comment,
+.dasque-comment *,
+.dasque-comment-form,
+.dasque-comment-form *,
+.dasque-comment-content,
+.dasque-comment-content *,
+.dasque-comment-author,
+.dasque-comment-author *,
+.dasque-comment-text,
+.dasque-comment-text *,
+.dasque-comment-meta,
+.dasque-comment-meta *,
+.dasque-reply-form,
+.dasque-reply-form *,
+[class*="dasque"],
+[class*="dasque"] *,
+[id*="dasque"],
+[id*="dasque"] *
+  background-color: rgba(167, 183, 195, 0.95) !important
+  color: #e8eff5 !important
+  border-color: rgba(140, 158, 170, 0.8) !important
+
+// 更強制的文字顏色覆蓋
+#dasque-comments p,
+#dasque-comments span,
+#dasque-comments div,
+#dasque-comments text,
+.dasque-comment p,
+.dasque-comment span,
+.dasque-comment div,
+.dasque-comment-text p,
+.dasque-comment-text span,
+.dasque-comment-text div,
+[class*="dasque"] p,
+[class*="dasque"] span,
+[class*="dasque"] div,
+[class*="dasque"] text
+  color: #e8eff5 !important
+  background-color: transparent !important
+
+// Dasque 輸入框 (莫蘭迪藍色系)
+.dasque-comment-form input,
+.dasque-comment-form textarea,
+.dasque-reply-form input,
+.dasque-reply-form textarea,
+[class*="dasque"] input,
+[class*="dasque"] textarea
+  background-color: rgba(185, 198, 208, 0.9) !important
+  color: #e8eff5 !important
+  border-color: rgba(140, 158, 170, 0.8) !important
+  
+  &::placeholder
+    color: rgba(232, 239, 245, 0.7) !important
+
+// Dasque 按鈕 (深藍莫蘭迪色系)
+.dasque-comment-form button,
+.dasque-reply-form button,
+.dasque-submit-btn,
+.dasque-reply-btn,
+[class*="dasque"] button
+  background-color: rgba(128, 148, 165, 0.9) !important
+  color: #ffffff !important
+  border-color: rgba(128, 148, 165, 0.9) !important
+  
+  &:hover
+    background-color: rgba(108, 128, 145, 1) !important
+    color: #ffffff !important
+
+// Dasque 連結 (淺藍莫蘭迪色系)
+.dasque-comment a,
+.dasque-comment-author a,
+.dasque-reply-link,
+[class*="dasque"] a
+  color: rgb(161, 196, 220) !important
+  
+  &:hover
+    color: rgba(220, 230, 235, 1) !important
+
+// 移除 iframe 反色處理
+// iframe[src*="dasque"]
+//   filter: invert(1) hue-rotate(180deg) !important 
