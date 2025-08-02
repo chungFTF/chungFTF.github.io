@@ -68,6 +68,9 @@ sitemap:
   rel: false
   tags: true
   categories: true
+  skip_render:
+    - "**/*.css"
+    - "**/*.js"
 
 feed:
   enable: true
