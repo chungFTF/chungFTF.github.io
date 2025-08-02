@@ -62,7 +62,7 @@ theme: icarus
 deploy:
   type: ""
 
-# SEO Configuration
+# SEO Configuration  
 sitemap:
   path: sitemap.xml
   rel: false
