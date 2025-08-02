@@ -92,3 +92,5 @@ seo:
   robots:
     - index
     - follow
+
+# CSS customization applied directly to theme files

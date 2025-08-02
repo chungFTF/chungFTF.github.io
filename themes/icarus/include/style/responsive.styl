@@ -3,17 +3,20 @@
  * --------------------------------- */
 +widescreen()
     .is-1-column .container, .is-2-column .container
-        max-width: $desktop - 2 * $gap
-        width: $desktop - 2 * $gap
+        max-width: 1000px
+        width: auto
+        margin: 0 auto
 
 +fullhd()
     .is-2-column .container
-        max-width: $widescreen - 2 * $gap
-        width: $widescreen - 2 * $gap
+        max-width: 1200px
+        width: auto
+        margin: 0 auto
 
     .is-1-column .container
-        max-width: $desktop - 2 * $gap
-        width: $desktop - 2 * $gap
+        max-width: 1000px
+        width: auto
+        margin: 0 auto
 
 +tablet()
     .is-sticky
@@ -30,3 +33,30 @@
 +mobile()
     .section
         padding: 1.5rem 1rem
+
+/* Custom layout adjustments for wider main content */
++tablet()
+    .is-2-column .column-main.is-8-tablet,
+    .is-2-column .column-main
+        width: 90% !important
+        flex: none !important
+    
+    .is-2-column .column-left
+        width: 10% !important
+        flex: none !important
+
++desktop()
+    .is-2-column .column-main.is-8-desktop,
+    .is-2-column .column-main
+        width: 90% !important
+    
+    .is-2-column .column-left
+        width: 10% !important
+
++widescreen()
+    .is-2-column .column-main.is-8-widescreen,
+    .is-2-column .column-main
+        width: 90% !important
+    
+    .is-2-column .column-left
+        width: 10% !important
