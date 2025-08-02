@@ -1,7 +1,7 @@
 title: Stephanie's Blog
 subtitle: ""
 description: "Software Engineer from Taipei, Taiwan"
-keywords:
+keywords: Software Engineer, Taipei, Taiwan, Programming, AI, Technology, Blog
 author: Stephanie Chung
 language: en
 timezone: ""
@@ -61,3 +61,34 @@ ignore: null
 theme: icarus
 deploy:
   type: ""
+
+# SEO Configuration
+sitemap:
+  path: sitemap.xml
+  rel: false
+  tags: true
+  categories: true
+
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: icon.png
+  autodiscovery: true
+  template:
+
+# Open Graph and Twitter Card
+open_graph:
+  enable: true
+  
+seo:
+  enable: true
+  robots:
+    - index
+    - follow
