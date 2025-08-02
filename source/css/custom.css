@@ -1,17 +1,26 @@
 /* 強制評論區塊使用淺色主題 */
 #comments {
-    background-color: #9ec3e1 !important;
-    border: 1px solid #9ec3e1 !important;
+    background-color: #95bee0 !important;
+    border: 1px solid #95bee0 !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
 }
 
 #comments .card {
-    background-color: #9ec3e1 !important;
+    background-color: #95bee0 !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
 }
 
 #comments .card-content {
-    background-color: #9ec3e1 !important;
+    background-color: #95bee0 !important;
+    color: #333333 !important;
+}
+
+/* 更強的選擇器來覆蓋任何衝突的樣式 */
+.card#comments .card-content,
+#comments.card .card-content,
+div.card#comments .card-content,
+.section .card#comments .card-content {
+    background-color: #95bee0 !important;
     color: #333333 !important;
 }
 
@@ -22,7 +31,7 @@
 
 /* Disqus 評論區域強制淺色 */
 #disqus_thread {
-    background-color: #9ec3e1 !important;
+    background-color: #95bee0 !important;
     color: #333333 !important;
     padding: 1rem !important;
     border-radius: 6px !important;
@@ -30,14 +39,14 @@
 
 /* 針對 Disqus iframe 內容的樣式調整 */
 #disqus_thread iframe {
-    background-color: #9ec3e1 !important;
+    background-color: #95bee0 !important;
 }
 
 /* 如果有其他評論系統，也強制使用淺色 */
 .comment-section,
 .comments,
 .comment-container {
-    background-color: #9ec3e1 !important;
+    background-color: #95bee0 !important;
     color: #333333 !important;
     padding: 1rem !important;
     border-radius: 6px !important;
