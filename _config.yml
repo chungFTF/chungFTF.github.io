@@ -62,7 +62,7 @@ theme: icarus
 deploy:
   type: ""
 
-# SEO Configuration  
+# SEO Configuration
 sitemap:
   path: sitemap.xml
   rel: false
@@ -80,7 +80,7 @@ feed:
   hub:
   content:
   content_limit: 140
-  content_limit_delim: ' '
+  content_limit_delim: " "
   order_by: -date
   icon: icon.png
   autodiscovery: true
@@ -89,11 +89,10 @@ feed:
 # Open Graph and Twitter Card
 open_graph:
   enable: true
-  
+
 seo:
   enable: true
   robots:
     - index
     - follow
-
 # CSS customization applied directly to theme files
