@@ -69,3 +69,22 @@ div.card#comments .card-content,
 #disqus_thread a:hover {
     color: #2366d1 !important;
 }
+
+/* Mermaid 流程圖黑色背景 */
+.mermaid {
+    background-color: #000000 !important;
+    padding: 1rem !important;
+    border-radius: 6px !important;
+}
+
+/* Mermaid SVG 背景 */
+.mermaid svg {
+    background-color: #000000 !important;
+}
+
+/* 確保 pre 標籤包裹的 mermaid 也是黑色 */
+pre.mermaid {
+    background-color: #000000 !important;
+    padding: 1rem !important;
+    border-radius: 6px !important;
+}

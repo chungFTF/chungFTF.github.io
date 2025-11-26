@@ -95,4 +95,14 @@ seo:
   robots:
     - index
     - follow
+
+# Mermaid diagram support
+mermaid:
+  enable: true
+  version: "10.6.1"
+  cdn: "https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"
+  options:
+    startOnLoad: true
+    theme: "default"
+
 # CSS customization applied directly to theme files
