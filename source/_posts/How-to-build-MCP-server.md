@@ -9,9 +9,9 @@ mermaid: true
 
 前陣子剛好處於職涯的轉換期，從 Software Engineer 轉變為顧問 Consultant 的角色。在適應新身份和不同工作節奏的過程中，部落格也跟著停更了一段時間。現在好不容易閒下來，是時候把這幾個月「搗鼓」的東西整理出來跟大家分享了～
 
-還記得上一篇 [教學：安裝 MCP 至 Claude Desktop，善用 AI 加速工作生產力](https://chungftf.github.io/2025/08/02/How-to-install-MCP-in-Claude/) 提到如何把現成的 MCP server 裝進 Claude 嗎？
+> 還記得上一篇 [教學：安裝 MCP 至 Claude Desktop，善用 AI 加速工作生產力](https://chungftf.github.io/2025/08/02/How-to-install-MCP-in-Claude/) 提到如何把現成的 MCP server 裝進 Claude 嗎？
 
-今天我們不只要「用」，更要進一步「造」——自己動手建構一個本地的 MCP server，打造專屬於你的 AI 小工具。
+> 今天我們不只要「用」，更要進一步「造」——自己動手建構一個本地的 MCP server，打造專屬於你的 AI 小工具。
 
 ## 為什麼想做這個？
 
@@ -25,7 +25,7 @@ mermaid: true
 
 所以目標很明確：利用自定義的 MCP server 串接新聞 API，讓 Claude 能夠根據我的指令，直接調用、過濾並總結我真正想看的內容。
 
-**因此我抱持著這個「想偷懶所以變勤勞」的思維，開始了這次的實作**
+> **因此我抱持「想偷懶所以變勤勞」的想法，開始了這次的實作**
 
 ## 技術架構
 
@@ -37,9 +37,9 @@ mermaid: true
 ```mermaid
 %%{init: {'theme':'dark', 'themeVariables': { 'darkMode': true, 'mainBkg': '#000000', 'clusterBkg': '#1A1A1A', 'primaryTextColor': '#E0E0E0', 'fontFamily': 'sans-serif' }}}%%
 graph TB
-    User[使用者] --> Claude[Claude Desktop<br/>自然語言介面]
-    Claude <-->|MCP Protocol<br/>JSON-RPC| MCP[News MCP Server<br/>FastMCP Framework]
-    MCP <-->|HTTPS<br/>REST API| API[newsdata.io API<br/>200+ 國家 40+ 語言]
+    User[使用者] --> Claude[Claude Desktop<br/>]
+    Claude <-->|JSON-RPC| MCP[News MCP Server]
+    MCP <-->|REST API| API[newsdata.io]
     
     subgraph "MCP Tools"
         MCP --> Tool1[get_latest_news]
@@ -47,7 +47,7 @@ graph TB
         MCP --> Tool3[get_taiwan_news]
     end
     
-    API --> DB[(Global News Database<br/>50,000+ 來源)]
+    API --> DB[newsdata.io news]
     
     style User fill:#475569,stroke:#94a3b8,stroke-width:2px,color:#E0E0E0
     style Claude fill:#254a7c,stroke:#60a5fa,stroke-width:3px,color:#E0E0E0
@@ -60,7 +60,7 @@ graph TB
 ```
 ## 環境準備
 
-首先安裝 `uv`，這是新一代的 Python 套件管理工具，速度快且簡潔：
+首先安裝Python 套件管理工具 `uv` ：
 
 ```bash
 # 安裝 uv
@@ -213,7 +213,7 @@ if __name__ == "__main__":
 6. **回傳結構化結果**：函數執行完回傳 JSON 格式的新聞資料
 7. **Claude 整理成自然語言**：將結構化資料轉換成易讀的摘要給使用者
 
-**所以重點是：你寫的 docstring 和參數說明越清楚，LLM 就越能準確判斷什麼時候該用哪個工具。**
+> docstring 和參數說明越清楚，LLM 就越能準確判斷什麼時候該用哪個工具
 
 這也是為什麼我們定義了 `get_tech_news` 這樣的函數——它的名稱和描述更明確，讓 LLM 能更快速地匹配使用者的意圖。
 
@@ -229,6 +229,7 @@ mcp dev src/mcp_news.py
 終端機會顯示一個 URL，點擊後會開啟 MCP Inspector，可以在瀏覽器中直接測試各個工具。
 
 ## 整合到 Claude Desktop
+
 
 編輯 Claude 設定檔（macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`）：
 
@@ -246,8 +247,10 @@ mcp dev src/mcp_news.py
 }
 ```
 
-重啟 Claude Desktop，在左下角就會看到新增的 news server。
+重啟 Claude Desktop，在 `Settings -> Developer -> Local MCP servers` 就可以看到我的 MCP server 顯示 `running` 的狀態
 
+
+![檢查 Claude 連接到 local MCP server](../img/claude-local-mcp.png)
 ## 實際使用
 
 現在可以直接用自然語言跟 Claude 對話：
@@ -258,25 +261,70 @@ mcp dev src/mcp_news.py
 
 Claude 會自動判斷要呼叫哪個工具，幫你整理成易讀的摘要。
 
-## 關鍵概念
+## 重要概念
 
-MCP 的運作原理其實很簡單：FastMCP 會把你的函數轉換成 JSON Schema，讓 AI 知道有哪些工具可用、需要什麼參數。
+MCP 的運作原理其實很簡單：**FastMCP 會把你的函數轉換成 JSON Schema，讓 AI 知道有哪些工具可用、需要什麼參數。**
 
 當使用者下指令時，AI 判斷要用哪個工具，MCP server 執行後回傳結果，AI 再把結果轉成人類易懂的回應。整個過程都是自動的，你只需要專注在寫好工具函數本身。
 
-## 總結
+## 實際運行範例
 
-透過 FastMCP 框架，我們可以快速建立了一個實用的新聞 MCP server。
+讓我們來看一個真實的使用案例。我在 Claude 中直接使用這個 News MCP Server，用自然語言向 AI 下指令：
+
+**指令**：「Summarize me Gemini3 from latest news」
+
+![MCP 實際運行結果](../img/mcp-functions.png)
+
+可以看到整個流程運作：
+
+1. **AI 理解我的意圖**：我想知道 Gemini 3 的最新新聞摘要
+2. **自動選擇正確的工具**：AI 判斷應該使用 `search_news` 函數
+3. **傳入適當參數**：
+   ```json
+   {
+     "keywords": "Gemini 3",
+     "max_results": 10
+   }
+   ```
+4. **取得即時新聞**：MCP Server 向 newsdata.io API 發送請求
+5. **AI 整理成摘要**：將結構化的 response （從 API 拿到的新聞資料）總結成易讀的內容
+
+**回傳的摘要包含**：
+- Google 最新發布 Gemini 3 的重點功能
+- 在 AI 領導力排行榜上的表現
+- 多模態推理能力的提升
+- "Nano Banana Pro" 圖片生成功能
+- 價格策略調整
+- 市場影響分析
+
+---
+透過 FastMCP 框架，就可以快速建立了一個實用的新聞 MCP server。
 
 這個架構可以延伸到任何有 API 的服務：天氣、股價、待辦事項、內部系統等等。
 
-下次當大家覺得「如果 AI 能幫我做這個就好了」，不妨花個半小時，自己動手打造一個專屬的 MCP 工具吧。
+
+下次當各位覺得「如果 AI 能幫我做這個就好了」，不妨花個半小時，自己動手打造一個專屬的 MCP 工具吧！！！
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
 <script>
   mermaid.initialize({ 
-    startOnLoad: true, 
+    startOnLoad: false,
     theme: 'dark',
+    flowchart: {
+      useMaxWidth: false,
+      htmlLabels: true,
+      curve: 'basis',
+      padding: 30
+    },
+    sequence: {
+      useMaxWidth: false,
+      diagramMarginX: 40,
+      diagramMarginY: 40,
+      boxMargin: 15,
+      boxTextMargin: 10,
+      noteMargin: 15,
+      messageMargin: 40
+    },
     themeVariables: {
       darkMode: true,
       background: '#0f172a',
@@ -315,5 +363,31 @@ MCP 的運作原理其實很簡單：FastMCP 會把你的函數轉換成 JSON Sc
       activationBkgColor: '#78350f',
       sequenceNumberColor: '#f1f5f9'
     }
+  });
+  
+  // 手動渲染並調整 SVG
+  document.addEventListener('DOMContentLoaded', function() {
+    const mermaidElements = document.querySelectorAll('.mermaid');
+    mermaidElements.forEach((element, index) => {
+      mermaid.render(`mermaid-${index}`, element.textContent).then(result => {
+        element.innerHTML = result.svg;
+        
+        // 調整 SVG 確保內容不被截斷
+        const svg = element.querySelector('svg');
+        if (svg) {
+          svg.style.width = '100%';
+          svg.style.height = 'auto';
+          svg.removeAttribute('width');
+          svg.removeAttribute('height');
+          
+          // 獲取實際的bounding box並調整viewBox
+          const bbox = svg.getBBox();
+          const padding = 40;
+          svg.setAttribute('viewBox', 
+            `${bbox.x - padding} ${bbox.y - padding} ${bbox.width + padding * 2} ${bbox.height + padding * 2}`
+          );
+        }
+      });
+    });
   });
 </script>

@@ -73,18 +73,124 @@ div.card#comments .card-content,
 /* Mermaid 流程圖黑色背景 */
 .mermaid {
     background-color: #000000 !important;
-    padding: 1rem !important;
+    padding: 3rem !important;
     border-radius: 6px !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 400px !important;
 }
 
-/* Mermaid SVG 背景 */
+/* Mermaid SVG 背景與尺寸 */
 .mermaid svg {
     background-color: #000000 !important;
+    overflow: visible !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
 }
 
 /* 確保 pre 標籤包裹的 mermaid 也是黑色 */
 pre.mermaid {
     background-color: #000000 !important;
-    padding: 1rem !important;
+    padding: 3rem !important;
     border-radius: 6px !important;
+    overflow: visible !important;
+}
+
+/* Mermaid 文字確保不被截斷 */
+.mermaid text,
+.mermaid tspan,
+.mermaid foreignObject {
+    overflow: visible !important;
+}
+
+/* Mermaid 節點確保有足夠空間 */
+.mermaid .node,
+.mermaid .cluster {
+    overflow: visible !important;
+}
+
+/* 節點內文字置中 - 使用更強的選擇器 */
+.mermaid svg text[class*="nodeLabel"],
+.mermaid svg .nodeLabel,
+.mermaid svg .node text,
+.mermaid svg .label text {
+    text-anchor: middle !important;
+    dominant-baseline: central !important;
+}
+
+/* 確保所有 tspan 也置中 */
+.mermaid svg text[class*="nodeLabel"] tspan,
+.mermaid svg .nodeLabel tspan,
+.mermaid svg .node text tspan {
+    text-anchor: middle !important;
+    dominant-baseline: central !important;
+}
+
+/* Mermaid 容器確保有足夠空間 */
+.content .mermaid {
+    margin: 3rem 0 !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+}
+
+/* 調整 SVG 的 viewBox */
+.mermaid svg[style*="max-width"] {
+    max-width: none !important;
+}
+
+/* 確保 navbar 在所有螢幕寬度下都保持深色（適中的深度） */
+.navbar,
+.navbar-menu,
+.navbar-start,
+.navbar-end {
+    background-color: #363636 !important;
+}
+
+/* 針對 Bulma navbar 的響應式樣式 */
+@media screen and (max-width: 1023px) {
+    .navbar,
+    .navbar-menu,
+    .navbar-start,
+    .navbar-end,
+    .navbar-menu.is-active {
+        background-color: #363636 !important;
+    }
+    
+    /* 確保手機版 navbar 的項目也是深色背景 */
+    .navbar-item,
+    .navbar-link {
+        background-color: #363636 !important;
+        color: #f5f5f5 !important;
+    }
+    
+    /* hover 狀態 */
+    .navbar-item:hover,
+    .navbar-link:hover {
+        background-color: #4a4a4a !important;
+        color: #ffffff !important;
+    }
+}
+
+/* 桌面版 navbar 也保持深色 */
+@media screen and (min-width: 1024px) {
+    .navbar,
+    .navbar-menu,
+    .navbar-start,
+    .navbar-end {
+        background-color: #363636 !important;
+    }
+    
+    .navbar-item,
+    .navbar-link {
+        color: #f5f5f5 !important;
+    }
+    
+    .navbar-item:hover,
+    .navbar-link:hover {
+        background-color: #4a4a4a !important;
+        color: #ffffff !important;
+    }
 }
